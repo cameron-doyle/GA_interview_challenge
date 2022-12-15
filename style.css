@@ -254,6 +254,7 @@ body {
 	border-radius: 0 .375rem .375rem 0;
 	line-height: 0;
 	padding: .3rem .75rem;
+	height: 100%; /* Fixes slight height misalignment */
 }
 
 .card-footer button span {
