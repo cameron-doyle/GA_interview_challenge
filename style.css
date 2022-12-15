@@ -1,6 +1,139 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+:root {
+	--content-padding-y: calc(100vh * .05);
+	--content-padding-x: calc(100vw * .04);
+}
+
+.clear::after {
+	float: none;
+	clear: both;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
 
 #addToCart {
 	position: fixed;
 	bottom: 0;
 	right: 0;
 }
+
+/* Content layout */
+#content-scroll {
+	background-color: rgb(137, 0, 0);
+	/* Makes scroll bar the same height as the content, instread of being next to the nav as well */
+	/* height: calc(100vh - var(--nav-height)); */
+	/* height: calc(100% - var(--nav-height)); */
+	/* Changed from viewHeight to percent to stop background from "shrinking" when body min-width was reached  */
+	width: 100%;
+	position: fixed;
+	overflow-y: auto;
+	overflow-x: clip;
+	height: 50vh;
+	/* Space Theme */
+	/* background-image: url("/images/space.gif"); */
+}
+
+#content-container {
+	padding: var(--content-padding-y) var(--content-padding-x);
+	padding-bottom: 4em;
+	/* Prevents the button and clock from blocking the last card in mobile */
+	flex-direction: row;
+	flex-wrap: wrap;
+	display: flex;
+	z-index: 1;
+}
+
+#content-container li {
+	border-radius: 0;
+	padding: 10px;
+	flex: 1 0 500px;
+	box-sizing: border-box;
+	margin: 1rem .25em;
+	border: none;
+	max-width: 100%;
+	background-color: inherit;
+}
+
+/* Calculates card width for different screen sizes */
+@media screen and (min-width: 50em) {
+	#content-container li {
+		max-width: calc(50% - 1em);
+	}
+
+
+}
+
+@media screen and (min-width: 70em) {
+	#content-container li {
+		max-width: calc(33.33% - 1em);
+	}
+
+}
+
+@media screen and (min-width: 95em) {
+	#content-container li {
+		max-width: calc(25% - 1em);
+	}
+}
+
+/* End content layout */
+
+
+
+/* Card design */
+.card {
+	height: 100%;
+}
+
+#content-container .card-header p,
+#content-container .card-footer p {
+	float: right;
+	font-size: 1em;
+	margin: auto;
+	/* font-family: 'Anek Telugu', sans-serif; */
+}
+
+/* Space Theme */
+#content-container .card-header p {
+	color: var(--card-header-text);
+}
+
+#content-container .card-footer p {
+	color: var(--card-footer-text);
+}
+
+
+#content-container .card-footer h5,
+#content-container .card-header h3 {
+	float: left;
+	font-size: 1em;
+	margin: auto;
+	margin-top: .17em;
+	/* Fix poor height alignment */
+	/* font-family: 'Space Grotesk', sans-serif; */
+	font-weight: bold;
+	/* Overrides bootstrap */
+}
+
+.card-body {
+	height: 13em;
+	overflow-y: auto;
+	background-color: var(--card-body);
+}
+
+#content-container .card-body p {
+	text-align: justify;
+	font-size: .9em;
+	max-height: 100%;
+
+}
+
+/* End Card Design */
