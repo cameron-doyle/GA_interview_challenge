@@ -26,37 +26,45 @@
 			<li class="list-group-item">
 				<div class="card">
 					<div class="card-header">
-						Header
+						<img src="./imgs/fishingforfloaters.avif" alt="" srcset="">
 					</div>
 					<div class="card-body">
-						Body
+						<h1>Poop fishing</h1>
+						<h2>$200</h2>
+						
 					</div>
 					<div class="card-footer">
-						Footer
+						<form action="">
+							<label for="txt-qty">Qty</label>
+							<input type="number" name="txt-qty" id="txt-qty" class="form-control" value="1">
+							<button type="submit" class="btn btn-primary">Add to cart</button>
+						</form>
 					</div>
 				</div>
 			</li>
 		</ul>
 	</div>
 	<div id="cart-container">
-		<table>
-			<tr>
-				<th>Item Name</th>
-				<th>Quantity</th>
-				<th>Price</th>
-				<th>Total</th>
-				<th>Action</th>
-			</tr>
-			<tr>
+		<table id="cart-table" class="table">
+			<thead>
+				<th scope="col">Item Name</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Price</th>
+				<th scope="col">Total</th>
+				<th scope="col">Action</th>
+			</thead>
+			<tbody>
 				<td>Panasonic T44 Lite</td>
 				<td>2</td>
 				<td>$125.00</td>
 				<td>$250.00</td>
 				<td><button class="btn-remove-item">Remove</button></td>
-			</tr>
+			</tbody>
+			<tfoot>
+
+			</tfoot>
 		</table>
 	</div>
-	<button id="addToCart" class="btn btn-primary">Add to cart</button>
 </body>
 
 </html>
