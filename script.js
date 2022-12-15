@@ -81,6 +81,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		let element = e.target
 
+		/* Navigate to button (fix for span click) */
+		while (element.nodeName !== "BUTTON") {
+			element = element.parentElement
+			
+			//This prevents an infinate loop if the nodeName isn't found (Top of DOM)
+			if (element.nodeName == null || element.parentElement == null)
+			return
+		}
+
 		//Search for specific class on clicked element
 		let foundClass = false;
 		element.classList.forEach(_class => {
