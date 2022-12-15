@@ -20,7 +20,7 @@ products to a shopping cart list<br>
 5. The shopping cart lists all products and displays a the total price
 <h3>Stretch Goals</h3>
 6. The user should also be able to delete the products from the cart, thus<br>
-modifying the total price of the cart
+modifying the total price of the cart<br>
 7. The user should be able to enter a quantity for each product<br>
 <br>
 <h2>Reflection:</h2>
