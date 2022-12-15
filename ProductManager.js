@@ -60,7 +60,9 @@ class ProductManager {
 							</div>
 							<input type="number" name="txt-qty" id="txt-qty" class="form-control" value="1" />
 							<div class="input-group-prepend">
-								<button class="btn btn-primary addToCart">Add to cart</button>
+								<button class="btn btn-primary addToCart"><span class="material-symbols-outlined">
+								add_shopping_cart
+								</span></button>
 							</div>
 						</div>
 					</div>
