@@ -9,34 +9,44 @@ window.addEventListener('DOMContentLoaded', () => {
 	document.getElementById("content-container").addEventListener("click", (e) => {
 		e.stopPropagation()
 		e.preventDefault()
-		
+
 		let element = e.target
-		
+
+		/* Navigate to button (fix for span click) */
+		while (element.nodeName !== "BUTTON") {
+			element = element.parentElement
+
+			//This prevents an infinate loop if the nodeName isn't found (Top of DOM)
+			if (element.nodeName == null || element.parentElement == null)
+				return
+		}
+
 		//Search for specific class on clicked element
 		let foundClass = false;
 		element.classList.forEach(_class => {
 			if (_class === "addToCart")
-			foundClass = true
+				foundClass = true
 		});
-		
+
 		//If the class isn't found, don't continue (addToCart button wasn't clicked)
 		if (!foundClass)
-		return
-		
-		//Navigates up the DOM to find the "li" element which contains the productID
-		while (element.nodeName !== "LI") {
-			element = element.parentElement
-			
-			//This prevents an infinate loop if the nodeName isn't found (Top of DOM)
-			if (element.nodeName == null || element.parentElement == null)
 			return
+
+		//Navigates up the DOM to find the "li" element which contains the productID
+		let pElement = element /* Create copy of element because e.target is not gaurenteed to be the button which will break the below for loop*/
+		while (pElement.nodeName !== "LI") {
+			pElement = pElement.parentElement
+
+			//This prevents an infinate loop if the nodeName isn't found (Top of DOM)
+			if (pElement.nodeName == null || pElement.parentElement == null)
+				return
 		}
-		
+
 		//Extracts task ID
-		const productID = Number(element.getAttribute("product-id"))
-		
+		const productID = Number(pElement.getAttribute("product-id"))
+
 		//Iterrate over the .input-group children until txt-qty is found
-		const formChildren = e.target.parentElement.parentElement.children;
+		const formChildren = element.parentElement.parentElement.children;
 		for (let i = 0; i < formChildren.length; i++) {
 			if (formChildren[i].id === "txt-qty") {
 				//Add item with qty value and break
@@ -84,10 +94,10 @@ window.addEventListener('DOMContentLoaded', () => {
 		/* Navigate to button (fix for span click) */
 		while (element.nodeName !== "BUTTON") {
 			element = element.parentElement
-			
+
 			//This prevents an infinate loop if the nodeName isn't found (Top of DOM)
 			if (element.nodeName == null || element.parentElement == null)
-			return
+				return
 		}
 
 		//Search for specific class on clicked element
@@ -120,7 +130,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		updateCartIcon()
 
 		//Close modal if no items in cart
-		if(Cart.numberOfItems() === 0){
+		if (Cart.numberOfItems() === 0) {
 			$('#cart-modal').modal('hide');
 		}
 	})
@@ -129,10 +139,10 @@ window.addEventListener('DOMContentLoaded', () => {
 	function updateCartIcon() {
 		const icon = document.getElementById("cartNum")
 		const num = Cart.numberOfItems()
-		
+
 		icon.innerText = num
 
-		if(num > 0)
+		if (num > 0)
 			icon.className = ''
 		else icon.className = 'none'
 	}
