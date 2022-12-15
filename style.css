@@ -1,4 +1,6 @@
-body {
-	background-color: black;
-	color: white;
+
+#addToCart {
+	position: fixed;
+	bottom: 0;
+	right: 0;
 }
