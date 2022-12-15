@@ -3,10 +3,12 @@ class CartManager {
 	#itemList
 	constructor(){
 		this.PM = new ProductManager()
-		//TODO load from local storage
-		this.#itemList = []
-		this.addItem(1, 2, 1)
-		this.addItem(3, 2, 1)
+		
+		//Load from local storage
+		const ls = JSON.parse(localStorage.getItem("GA_interview_cart"))
+
+		//If local storage is empty, default to empty array
+		this.#itemList = (ls == null) ? []:ls
 		this.render()
 	}
 
@@ -63,6 +65,9 @@ class CartManager {
 
 	//Renders the cart to the DOM
 	render(){
+		//Save to local storage
+		localStorage.setItem("GA_interview_cart", JSON.stringify(this.#itemList))
+
 		const table = document.getElementById("cart-table").getElementsByTagName("tbody")[0]
 		table.innerHTML = '' //Wipe table for rerender
 		let cartTotal = 0;

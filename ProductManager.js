@@ -2,11 +2,18 @@ class ProductManager {
 	//Array of productItems
 	#products
 	constructor() {
-		this.#products = []
-		this.addProduct("Poop Fishing", 199.99, "fishingforfloaters.avif")
-		this.addProduct("Gen Z Man", 9.99, "lazyman.avif")
-		this.addProduct("Loud Mouth", 17.6874578, "loudmouth.avif")
-		this.addProduct("Speeding Poo", 5, "speed-poo.avif")
+		//Load from local storage
+		const ls = JSON.parse(localStorage.getItem("GA_interview_products"))
+		
+		//If local storage is empty, default to empty array
+		this.#products = (ls == null) ? []:ls
+
+		if(this.#products.length === 0){
+			this.addProduct("Poop Fishing", 199.99, "fishingforfloaters.avif")
+			this.addProduct("Gen Z Man", 9.99, "lazyman.avif")
+			this.addProduct("Loud Mouth", 17.6874578, "loudmouth.avif")
+			this.addProduct("Speeding Poo", 5, "speed-poo.avif")
+		}
 		this.render()
 	}
 
@@ -36,8 +43,11 @@ class ProductManager {
 		const p = this.#products.filter(product => product.id === productID)
 		return (p != null && p.length > 0) ? p[0] : null
 	}
-
+	
 	render() {
+		//Save to local storage
+		localStorage.setItem("GA_interview_products", JSON.stringify(this.#products))
+
 		const container = document.getElementById("content-container")
 		container.innerHTML = '' //Wipe table for rerender
 
