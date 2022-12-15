@@ -86,8 +86,11 @@ window.addEventListener('DOMContentLoaded', () => {
 		//Update cart item
 		Cart.removeItem(productID)
 	})
-})
 
+	function updateCartIcon(){
+		//document.getElementById("")
+	}
+})
 
 
 function formatPrice(price) {
